@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Routes, Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import bookLogo from "./assets/books.png";
 import Books from "./components/Books";
-import Books from "./components/Account";
-import Books from "./components/Login";
-import Books from "./components/Register";
+import Account from "./components/Account";
+import Login from "./components/Login";
+import Register from "./components/Register";
 
 function App() {
   const [token, setToken] = useState(null);
