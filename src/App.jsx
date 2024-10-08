@@ -16,6 +16,7 @@ function App() {
         <img id="logo-image" src={bookLogo} />
         Library App
       </h1>
+      {import.meta.env.VITE_API_BASE_URL}
       <Navigations />
       <Routes>
         <Route path="/" element={<Books />} />
