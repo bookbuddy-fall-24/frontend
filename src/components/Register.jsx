@@ -3,7 +3,7 @@ import React from "react";
 
 function Register() {
   return (
-    <div>
+    <div className="register-containers">
       <h2>Register Here</h2>
       <form>
         <label>
