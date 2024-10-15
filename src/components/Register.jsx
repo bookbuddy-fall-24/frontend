@@ -1,5 +1,6 @@
 /* TODO - add your code to create a functional React component that renders a registration form */
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
@@ -17,7 +18,11 @@ function Register() {
         newUser
       );
       console.log(data);
-      setToken(data.data.token);
+      if (data.data.token) {
+        localStorage.setItem("token", data.data.token);
+        setToken(data.data.token);
+        navigate("/me");
+      }
     } catch (err) {
       console.log(err);
     }
@@ -31,7 +36,7 @@ function Register() {
           <p> First Name (Optional)</p>
           <input type="text" name="firstname" onChange={handleInputChange} />
         </label>
-        \
+
         <label>
           <p> Last Name (Optional)</p>
           <input type="text" name="lastname" onChange={handleInputChange} />
