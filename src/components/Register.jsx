@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register() {
+  const navigate = useNavigate();
   const [newUser, setNewUser] = useState({});
   const [token, setToken] = useState(null);
   const handleInputChange = (e) => {
