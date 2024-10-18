@@ -1,12 +1,12 @@
 /* TODO - add your code to create a functional React component that renders a login form */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Login({ token, setToken }) {
   const navigate = useNavigate();
-
   const [loginData, setLoginData] = useState({});
+  const [error, setError] = useState(false);
 
   const handleUserInput = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
@@ -27,6 +27,7 @@ function Login({ token, setToken }) {
       }
     } catch (err) {
       console.log(err);
+      setError(err.response.data.message);
     }
   };
 
@@ -34,7 +35,6 @@ function Login({ token, setToken }) {
     navigate("/me");
   }
 
-  console.log(loginData);
   return (
     <div className="register-containers">
       <h2>Login</h2>
@@ -49,6 +49,10 @@ function Login({ token, setToken }) {
         </label>
         <button>Login</button>
       </form>
+      {error && <p className="auth-error">{error}</p>}
+      <p>
+        Need an account? Sign up <Link to="/register">Here</Link>
+      </p>
     </div>
   );
 }

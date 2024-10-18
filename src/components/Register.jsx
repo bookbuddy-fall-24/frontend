@@ -1,11 +1,12 @@
 /* TODO - add your code to create a functional React component that renders a registration form */
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function Register({ token, setToken }) {
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({});
+  const [error, setError] = useState(null);
   const handleInputChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
@@ -25,6 +26,7 @@ function Register({ token, setToken }) {
       }
     } catch (err) {
       console.log(err);
+      setError(err.response.data.message);
     }
   };
 
@@ -55,6 +57,11 @@ function Register({ token, setToken }) {
         </label>
         <button>Register Now!</button>
       </form>
+      {error && <p className="auth-error">{error}</p>}
+      <p>
+        {" "}
+        Already have an account? Log in <Link to="/login">Here</Link>
+      </p>
     </div>
   );
 }
