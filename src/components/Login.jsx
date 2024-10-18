@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Login() {
+function Login({ token, setToken }) {
   const navigate = useNavigate();
-  const [token, setToken] = useState(null);
+
   const [loginData, setLoginData] = useState({});
 
   const handleUserInput = (e) => {
@@ -29,6 +29,10 @@ function Login() {
       console.log(err);
     }
   };
+
+  if (token) {
+    navigate("/me");
+  }
 
   console.log(loginData);
   return (

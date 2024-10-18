@@ -3,10 +3,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function Register() {
+function Register({ token, setToken }) {
   const navigate = useNavigate();
   const [newUser, setNewUser] = useState({});
-  const [token, setToken] = useState(null);
   const handleInputChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
@@ -28,7 +27,11 @@ function Register() {
       console.log(err);
     }
   };
-  console.log(newUser);
+
+  if (token) {
+    navigate("/me");
+  }
+
   return (
     <div className="register-containers">
       <h2>Register Here</h2>
